@@ -1,6 +1,16 @@
 var express = require('express')
-
+var app = express()
 var fs = require('fs');
+// var bodyParser = require('body-parser');
+
+// app.get('/', function (req, res) {
+//   res.send('Hello World')
+// console.log(req.body);
+// })
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!')
+})
+
 var brutDataFilleules = {
 	"range": "Sheet1!A1:D5",
 	"majorDimension": "ROWS",

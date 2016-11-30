@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/Mooncode29/Projet-DuchesseFrance#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "google-spreadsheet-to-json": "^0.3.0"
-
   }
 }
