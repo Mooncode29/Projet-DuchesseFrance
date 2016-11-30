@@ -1,3 +1,5 @@
+var express = require('express')
+
 var fs = require('fs');
 var brutDataFilleules = {
 	"range": "Sheet1!A1:D5",
@@ -41,5 +43,5 @@ function createJson(array, group){
 
 fs.writeFile('filleules.json',stringJson, (err) => {
   if (err) throw err;
-  console.log('It\'s saved!');
+  console.log('It\'s saved');
 });

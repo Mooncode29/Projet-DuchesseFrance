@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Mooncode29/Projet_-DuchesseFrance/issues"
   },
-  "homepage": "https://github.com/Mooncode29/Projet_-DuchesseFrance#readme"
+  "homepage": "https://github.com/Mooncode29/Projet_-DuchesseFrance#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
