@@ -11,13 +11,14 @@ var brutData = {
 }
 var values = brutData.values;
 var objectTable = [];
-var keyTable = ["id", "nom", "prenom", "email", "societe", "experience", "profession", "specialite", "ville", "telephone", "twitter", "linkedin", "facebook", "description", "modeInteraction", "map"];
+var keyTable = ["nom", "prenom", "email", "societe", "experience", "profession", "specialite", "ville", "telephone", "twitter", "linkedin", "facebook", "description", "modeInteraction", "map"];
 
 createObjects(values);
 
 function createObjects(table){
 	for(var i = 1 ; i < table.length ; i++){
 		var object = {};
+		object["id"] = i ;
 		for(var j = 0 ; j < table[i].length ; j++){
 			object[keyTable[j]] = table[i][j];
 		}
