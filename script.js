@@ -17,6 +17,11 @@ createObjects(values);
 
 function createObjects(table){
 	for(var i = 1 ; i < table.length ; i++){
-		console.log(table[i][0]);
+		var object = {};
+		for(var j = 0 ; j < table[i].length ; j++){
+			object[keyTable[j]] = table[i][j];
+		}
+		objectTable.push(object);
 	}
+	console.log(objectTable);
 }
