@@ -9,3 +9,6 @@ var brutData = {
 		["Totals", "$135.5", "7", "3/20/2016"]
 	],
 }
+var values = brutData.values;
+var objectTable = [];
+var keyTable = ["id", "nom", "prenom", "email", "societe", "experience", "profession", "specialite", "ville", "telephone", "twitter", "linkedin", "facebook", "description", "modeInteraction", "map"];
