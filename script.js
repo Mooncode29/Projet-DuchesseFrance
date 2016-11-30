@@ -1,3 +1,4 @@
+var fs = require('fs');
 var brutDataFilleules = {
 	"range": "Sheet1!A1:D5",
 	"majorDimension": "ROWS",
@@ -16,7 +17,8 @@ var keyTable = ["dateInscription", "nom", "prenom", "email", "societe", "experie
 
 createObjects(valuesFilleules);
 var filleulesJson = createJson(objectTableFilleules, "filleules");
-console.log(filleulesJson);
+var stringJson= JSON.stringify(filleulesJson);
+
 
 
 function createObjects(table){
@@ -35,3 +37,9 @@ function createJson(array, group){
 	Json[group] = array;
 	return Json ;
 }
+
+
+fs.writeFile('filleules.json',stringJson, (err) => {
+  if (err) throw err;
+  console.log('It\'s saved!');
+});
