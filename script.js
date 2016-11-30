@@ -1,4 +1,4 @@
-var brutData = {
+var brutDataFilleules = {
 	"range": "Sheet1!A1:D5",
 	"majorDimension": "ROWS",
 	"values": [
@@ -9,11 +9,15 @@ var brutData = {
 		["Totals", "$135.5", "7", "3/20/2016"]
 	],
 }
-var values = brutData.values;
-var objectTable = [];
+
+var valuesFilleules = brutDataFilleules.values;
+var objectTableFilleules = [];
 var keyTable = ["dateInscription", "nom", "prenom", "email", "societe", "experience", "profession", "specialite", "ville", "telephone", "twitter", "linkedin", "facebook", "mailingList", "description", "modeInteraction", "map"];
 
-createObjects(values);
+createObjects(valuesFilleules);
+var filleulesJson = createJson(objectTableFilleules, "filleules");
+console.log(filleulesJson);
+
 
 function createObjects(table){
 	for(var i = 1 ; i < table.length ; i++){
@@ -22,7 +26,12 @@ function createObjects(table){
 		for(var j = 0 ; j < table[i].length ; j++){
 			object[keyTable[j]] = table[i][j];
 		}
-		objectTable.push(object);
+		objectTableFilleules.push(object);
 	}
-	console.log(objectTable);
+}
+
+function createJson(array, group){
+	var Json = {}
+	Json[group] = array;
+	return Json ;
 }
