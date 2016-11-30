@@ -11,7 +11,7 @@ var brutData = {
 }
 var values = brutData.values;
 var objectTable = [];
-var keyTable = ["nom", "prenom", "email", "societe", "experience", "profession", "specialite", "ville", "telephone", "twitter", "linkedin", "facebook", "description", "modeInteraction", "map"];
+var keyTable = ["dateInscription", "nom", "prenom", "email", "societe", "experience", "profession", "specialite", "ville", "telephone", "twitter", "linkedin", "facebook", "mailingList", "description", "modeInteraction", "map"];
 
 createObjects(values);
 
