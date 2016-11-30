@@ -12,3 +12,11 @@ var brutData = {
 var values = brutData.values;
 var objectTable = [];
 var keyTable = ["id", "nom", "prenom", "email", "societe", "experience", "profession", "specialite", "ville", "telephone", "twitter", "linkedin", "facebook", "description", "modeInteraction", "map"];
+
+createObjects(values);
+
+function createObjects(table){
+	for(var i = 1 ; i < table.length ; i++){
+		console.log(table[i][0]);
+	}
+}
