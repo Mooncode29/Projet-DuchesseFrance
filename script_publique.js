@@ -3,15 +3,17 @@ var gsjson = require('google-spreadsheet-to-json');
 
 
 var filleulesJsonOrigin ;
+var filleulesArray = [];
+var filleulesJson ;
 
 gsjson({
 	spreadsheetId:'1yExh1Uv0aVD8j9J_IJg8VkYy6JTp42njCESJWUjM900',
 })
 .then(function(result){
-	console.log(result.length);
 	filleulesJsonOrigin = result;
 	reorganizeJson();
-	// console.log(result);
+	filleulesJson = createJson(filleulesArray, "filleules");
+	console.log(filleulesJson);
 })
 .catch(function(err){
 	console.log(err.message);
@@ -20,7 +22,7 @@ gsjson({
 
 
 function reorganizeJson(){
-	var filleulesArray = filleulesJsonOrigin.map(function(item, i){
+	filleulesArray = filleulesJsonOrigin.map(function(item, i){
 		var object = {
 			id: i+1,
 			nom: item.nom,
@@ -42,7 +44,11 @@ function reorganizeJson(){
 		}
 		return object;
 	});
-	console.log(filleulesArray);
+}
+function createJson(array, group){
+	var Json = {}
+	Json[group] = array;
+	return Json ;
 }
 
 // var client ID = 765119466539-183q38tum9skq60pk177bon8u8kr2gtp.apps.googleusercontent.com
