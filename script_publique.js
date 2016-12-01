@@ -1,13 +1,14 @@
 var fs = require('fs');
 var gsjson = require('google-spreadsheet-to-json');
-var filleulesJsonOrigin ;
-var filleulesArray ;
-var filleulesJson ;
 var config = require('./config.js');
 var values = require('./values.js');
 
+var filleulesJsonOrigin ;
+var filleulesArray ;
+var filleulesJson ;
+
 gsjson({
-	spreadsheetId:config.spreadsheetId,
+	spreadsheetId: config.spreadsheetId,
 })
 .then(function(result){
 	filleulesJsonOrigin = result;
