@@ -3,9 +3,11 @@ var gsjson = require('google-spreadsheet-to-json');
 var filleulesJsonOrigin ;
 var filleulesArray ;
 var filleulesJson ;
+var config = require('./config.js');
+var values = require('./values.js');
 
 gsjson({
-	spreadsheetId:'1yExh1Uv0aVD8j9J_IJg8VkYy6JTp42njCESJWUjM900',
+	spreadsheetId:config.spreadsheetId,
 })
 .then(function(result){
 	filleulesJsonOrigin = result;
