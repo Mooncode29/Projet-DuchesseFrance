@@ -11,13 +11,13 @@ gsjson({
 	spreadsheetId: config.spreadsheetId,
 })
 .then(function(result){
-	console.log(result);
+	
 
-	// filleulesJsonOrigin = result;
-	// reorganizeJson();
-	// filleulesJson = createJson(filleulesArray, "filleules");
-	// console.log(filleulesJson);
-	// ecritureJson ();
+	filleulesJsonOrigin = result;
+	reorganizeJson();
+	filleulesJson = createJson(filleulesArray, "filleules");
+	console.log(filleulesJson);
+	ecritureJson ();
 })
 .catch(function(err){
 	console.log(err.message);
