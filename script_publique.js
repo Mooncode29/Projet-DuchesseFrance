@@ -1,9 +1,10 @@
-
+var fs = require('fs');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
 var gsjson = require('google-spreadsheet-to-json');
-
-
 var filleulesJsonOrigin ;
-var filleulesArray = [];
+var filleulesArray ;
 var filleulesJson ;
 
 gsjson({
@@ -14,6 +15,11 @@ gsjson({
 	reorganizeJson();
 	filleulesJson = createJson(filleulesArray, "filleules");
 	console.log(filleulesJson);
+	var stringJson= JSON.stringify(filleulesJson);
+	fs.writeFile('filleules.json',stringJson, (err) => {
+		if (err) throw err;
+		console.log('It\'s saved!');
+	});
 })
 .catch(function(err){
 	console.log(err.message);
@@ -81,5 +87,6 @@ function transformUndefined(array){
 	})
 }
 
+
 // var client ID = 765119466539-183q38tum9skq60pk177bon8u8kr2gtp.apps.googleusercontent.com
-// var client secret = flCCrxweg1c22PnwjG5GP3_As
+// var client secret = flCCrxweg1c22PnwjG5GP3_A
