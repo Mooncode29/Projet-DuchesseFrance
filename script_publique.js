@@ -42,41 +42,30 @@ function reorganizeJson(){
 		}
 		return object;
 	});
-	addBoolean(filleulesArray);
-	transformUndefined(filleulesArray);
+}
+
+function transformIntoBoolean(value){
+	if(value === "Oui"){
+		value = true;
+	}
+	else {
+		value = false;
+	}
+}
+
+function transformUndefined(value){
+	if(value === "Oui"){
+		value = true;
+	}
+	else {
+		value = false;
+	}
 }
 
 function createJson(array, group){
 	var Json = {}
 	Json[group] = array;
 	return Json ;
-}
-function addBoolean(array){
-	array = array.map(function(item){
-		if(item.map === "Oui"){
-			item.map = true;
-		}
-		else {
-			item.map = false;
-		}
-
-		if(item.mailingList === "Oui"){
-			item.mailingList = true;
-		}
-		else {
-			item.mailingList = false;
-		}
-	});
-}
-
-function transformUndefined(array){
-	array = array.map(function(item){
-		for (var key in item){
-			if(item[key] === undefined){
-				item[key] = "";
-			}
-		}
-	})
 }
 
 function ecritureJson(){
@@ -86,6 +75,3 @@ function ecritureJson(){
 		console.log('It\'s saved!');
 	});
 }
-
-// var client ID = 765119466539-183q38tum9skq60pk177bon8u8kr2gtp.apps.googleusercontent.com
-// var client secret = flCCrxweg1c22PnwjG5GP3_A
