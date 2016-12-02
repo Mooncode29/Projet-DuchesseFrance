@@ -17,7 +17,3 @@ module.exports = {
 	modeInteraction:"avezVousUnModeD\'interactionPréféré?",
 	map:"acceptezVousDeFigurerSurLaMapDesDuchessFranceSurLeSiteDeMarrainage?"
 };
-
-// module.exports = function(val){
-// 	return mapping[val]
-// };
