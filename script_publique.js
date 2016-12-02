@@ -28,42 +28,39 @@ function reorganizeJson(){
 	filleulesArray = filleulesJsonOrigin.map(function(item, i){
 		var object = {
 			id: i+1,
-			nom: item.nom,
-			prenom: item["prénom"],
-			email: item.email,
-			societe: item["société/Ecole"],
-			experience: item["annéesD\'expérienceDansLeDomaineInformatique/AnnéesD\'étudesPourLesÉtudiants"],
-			profession: item["profession/SpécialitéDansL\'école"],
-			specialite: item["spécialités/domaineTechnique(web,Mobile,Data,Infra,Ops,…?)"],
-			ville: item["région/ville"],
-			telephone: item["noTéléphone"],
-			twitter: item.urlTwitter,
-			linkedin: item.urlLinkedin,
-			facebook: item.urlFacebook,
-			mailingList: item["etesVousAbonnéeÀLaMailingListDuchess?"],
-			description: item["quelquesMotsPourVousPrésenterAuxMarraines,QueRecherchezVous?"],
-			modeInteraction: item["avezVousUnModeD\'interactionPréféré?"],
-			map: item["acceptezVousD\'êtreVisibleSurLaCarteDeLocalisationDesDuchesses?"]
+			nom: item[values('nom')],
+			prenom: item[values('prenom')],
+			email: item[values('email')],
+			societe: transformUndefined(item[values('societe')]),
+			experience: transformUndefined(item[values('experience')]),
+			profession: transformUndefined(item[values('profession')]),
+			specialite: transformUndefined(item[values('specialite')]),
+			ville: item[values('ville')],
+			telephone: transformUndefined(item[values('telephone')]),
+			twitter: transformUndefined(item[values('twitter')]),
+			linkedin: transformUndefined(item[values('linkedin')]),
+			facebook: transformUndefined(item[values('facebook')]),
+			mailingList: transformIntoBoolean(item[values('mailingList')]),
+			description: transformUndefined(item[values('description')]),
+			modeInteraction: transformUndefined(item[values('modeInteraction')]),
+			map: transformIntoBoolean(item[values('map')])
 		}
 		return object;
 	});
 }
 
 function transformIntoBoolean(value){
-	if(value === "Oui"){
-		value = true;
+	if(value === "Non"){
+		return false;
 	}
 	else {
-		value = false;
+		return true;
 	}
 }
 
 function transformUndefined(value){
-	if(value === "Oui"){
-		value = true;
-	}
-	else {
-		value = false;
+	if(value === undefined ){
+		return '';
 	}
 }
 
