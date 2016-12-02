@@ -11,6 +11,8 @@ gsjson({
 	spreadsheetId: config.spreadsheetId,
 })
 .then(function(result){
+	
+
 	filleulesJsonOrigin = result;
 	reorganizeJson();
 	filleulesJson = createJson(filleulesArray, "filleules");

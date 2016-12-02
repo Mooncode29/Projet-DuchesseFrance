@@ -14,7 +14,7 @@ var mapping = {
 	mailingList:"etesVousAbonnéeÀLaMailingListDuchess?",
 	description:"quelquesMotsPourVousPrésenterAuxMarraines,QueRecherchezVous?",
 	modeInteraction:"avezVousUnModeD\'interactionPréféré?",
-	map:"acceptezVousD\'êtreVisibleSurLaCarteDeLocalisationDesDuchesses?"
+	map:"acceptezVousDeFigurerSurLaMapDesDuchessFranceSurLeSiteDeMarrainage?"
 };
 
 module.exports = function(val){
