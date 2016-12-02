@@ -1,5 +1,3 @@
-
-var app = express()
 var fs = require('fs');
 // var bodyParser = require('body-parser');
 
@@ -51,7 +49,7 @@ function createJson(array, group){
 }
 
 
-fs.writeFile('filleules.json',stringJson, (err) => {
+fs.writeFile('filleuless.json',stringJson, (err) => {
   if (err) throw err;
   console.log('It\'s saved');
 });
