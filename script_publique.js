@@ -11,12 +11,11 @@ gsjson({
 	spreadsheetId: config.spreadsheetId,
 })
 .then(function(result){
-	
-
 	filleulesJsonOrigin = result;
 	reorganizeJson();
 	filleulesJson = createJson(filleulesArray, "filleules");
 	ecritureJson ();
+	console.log(filleulesJson);
 })
 .catch(function(err){
 	console.log(err.message);
@@ -32,7 +31,7 @@ function reorganizeJson(){
 			email: item[values('email')],
 			societe: transformUndefined(item[values('societe')]),
 			experience: transformUndefined(item[values('experience')]),
-			profession: transformUndefined(item[values('profession')]),
+			profession: transformUndefined(item[values('profession')]), //undefined avec la fonction même si remplit, sinon écrit bien la valeur
 			specialite: transformUndefined(item[values('specialite')]),
 			ville: item[values('ville')],
 			telephone: transformUndefined(item[values('telephone')]),
@@ -58,8 +57,11 @@ function transformIntoBoolean(value){
 }
 
 function transformUndefined(value){
-	if(value === undefined ){
+	if(value === undefined){
 		return '';
+	}
+	else {
+		return value;
 	}
 }
 
