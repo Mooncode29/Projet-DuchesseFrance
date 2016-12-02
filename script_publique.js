@@ -1,7 +1,9 @@
 var fs = require('fs');
 var gsjson = require('google-spreadsheet-to-json');
 var config = require('./config.js');
-var values = require('./values.js');
+var md5 = require('md5');
+var valuesFilleules = require('./valuesFilleules.js');
+var valuesMarraines = require('./valuesMarraines.js');
 
 var filleulesOutput ;
 var filleulesJson ;
@@ -12,9 +14,11 @@ gsjson({
 	spreadsheetId: config.spreadsheetIdMarraines,
 })
 .then(function(result){
-	marrainesOutput = reorganizeJson(result, values);
+	
+	marrainesOutput = reorganizeJson(result, valuesMarraines);
 	marrainesJson = createJson(marrainesOutput, "marraines");
 	ecritureJson(marrainesJson, 'public/marraines.json');
+	
 })
 .catch(function(err){
 	console.log(err.message);
@@ -25,7 +29,7 @@ gsjson({
 	spreadsheetId: config.spreadsheetIdFilleules,
 })
 .then(function(result){
-	filleulesOutput = reorganizeJson(result, values);
+	filleulesOutput = reorganizeJson(result, valuesFilleules);
 	filleulesJson = createJson(filleulesOutput, "filleules");
 	ecritureJson(filleulesJson, 'public/filleules.json');
 })
@@ -39,6 +43,7 @@ gsjson({
 function reorganizeJson(data, keys){
 	return data.map(function(item){
 		var output = {};
+		createId(output, item.horodateur, item.nom, item.prenom);
 		for(var k in keys){
 			output[k] = item[keys[k]];
 			if(k === 'mailingList' || k === 'map'){
@@ -50,6 +55,10 @@ function reorganizeJson(data, keys){
 		}
 		return output;
 	});
+}
+
+function createId(object, horodateur, nom, prenom){
+	object.id = md5(horodateur + nom + prenom);
 }
 
 function transformIntoBoolean(value){
@@ -81,7 +90,5 @@ function ecritureJson(file, path){
 	fs.writeFile(path ,stringJson, 'utf8', (err) => {
 		if (err) throw err;
 		console.log('It\'s saved!');
-	 
 	});
 }
-
