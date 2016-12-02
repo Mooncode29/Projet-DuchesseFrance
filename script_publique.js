@@ -14,7 +14,6 @@ gsjson({
 	filleulesJsonOrigin = result;
 	reorganizeJson();
 	filleulesJson = createJson(filleulesArray, "filleules");
-	console.log(filleulesJson);
 	ecritureJson ();
 })
 .catch(function(err){
@@ -73,7 +72,7 @@ function createJson(array, group){
 
 function ecritureJson(){
 	var stringJson= JSON.stringify(filleulesJson);
-	fs.writeFile('filleules.json',stringJson, (err) => {
+	fs.writeFile('public/filleules.json',stringJson,'utf8', (err) => {
 		if (err) throw err;
 		console.log('It\'s saved!');
 	});
