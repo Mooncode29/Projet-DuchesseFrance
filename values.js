@@ -1,4 +1,5 @@
-var mapping = {
+module.exports = {
+	horodateur: "horodateur",
 	nom : "nom",
 	prenom:"prénom",
 	email: "email",
@@ -17,6 +18,6 @@ var mapping = {
 	map:"acceptezVousDeFigurerSurLaMapDesDuchessFranceSurLeSiteDeMarrainage?"
 };
 
-module.exports = function(val){
-	return mapping[val]
-};
+// module.exports = function(val){
+// 	return mapping[val]
+// };
