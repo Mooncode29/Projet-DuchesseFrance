@@ -1,8 +1,9 @@
 var fs = require('fs');
 var gsjson = require('google-spreadsheet-to-json');
 var config = require('./config.js');
-var values = require('./values.js');
 var md5 = require('md5');
+var valuesFilleules = require('./valuesFilleules.js');
+var valuesMarraines = require('./valuesMarraines.js');
 
 var filleulesOutput ;
 var filleulesJson ;
@@ -13,9 +14,11 @@ gsjson({
 	spreadsheetId: config.spreadsheetIdMarraines,
 })
 .then(function(result){
-	marrainesOutput = reorganizeJson(result, values);
+	
+	marrainesOutput = reorganizeJson(result, valuesMarraines);
 	marrainesJson = createJson(marrainesOutput, "marraines");
 	ecritureJson(marrainesJson, 'public/marraines.json');
+	
 })
 .catch(function(err){
 	console.log(err.message);
@@ -26,7 +29,7 @@ gsjson({
 	spreadsheetId: config.spreadsheetIdFilleules,
 })
 .then(function(result){
-	filleulesOutput = reorganizeJson(result, values);
+	filleulesOutput = reorganizeJson(result, valuesFilleules);
 	filleulesJson = createJson(filleulesOutput, "filleules");
 	ecritureJson(filleulesJson, 'public/filleules.json');
 })
