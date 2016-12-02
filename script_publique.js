@@ -77,5 +77,6 @@ function ecritureJson(){
 	fs.writeFile('public/filleules.json',stringJson,'utf8', (err) => {
 		if (err) throw err;
 		console.log('It\'s saved!');
+		console.log(stringJson);
 	});
 }
