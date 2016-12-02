@@ -2,6 +2,7 @@ var fs = require('fs');
 var gsjson = require('google-spreadsheet-to-json');
 var config = require('./config.js');
 var values = require('./values.js');
+var md5 = require('md5');
 
 var filleulesOutput ;
 var filleulesJson ;
@@ -39,6 +40,7 @@ gsjson({
 function reorganizeJson(data, keys){
 	return data.map(function(item){
 		var output = {};
+		createId(output, item.horodateur, item.nom, item.prenom);
 		for(var k in keys){
 			output[k] = item[keys[k]];
 			if(k === 'mailingList' || k === 'map'){
@@ -50,6 +52,10 @@ function reorganizeJson(data, keys){
 		}
 		return output;
 	});
+}
+
+function createId(object, horodateur, nom, prenom){
+	object.id = md5(horodateur + nom + prenom);
 }
 
 function transformIntoBoolean(value){
