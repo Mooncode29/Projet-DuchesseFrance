@@ -14,7 +14,6 @@ gsjson({
 	spreadsheetId: config.spreadsheetIdMarraines,
 })
 .then(function(result){
-	
 	marrainesOutput = reorganizeJson(result, valuesMarraines, "marraine");
 	marrainesJson = createJson(marrainesOutput, "marraines");
 	ecritureJson(marrainesJson, __dirname + '/public/marraines.json');
