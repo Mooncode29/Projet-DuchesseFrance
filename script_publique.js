@@ -15,11 +15,14 @@ gsjson({
 })
 .then(function(result){
 	
+<<<<<<< HEAD
 	marrainesOutput = reorganizeJson(result, valuesMarraines);
 	console.log(marrainesOutput);
+=======
+	marrainesOutput = reorganizeJson(result, valuesMarraines, "marraine");
+>>>>>>> a96d46615dbf20306e3c7a8c0ef5f81dfce9aef2
 	marrainesJson = createJson(marrainesOutput, "marraines");
 	ecritureJson(marrainesJson, 'public/marraines.json');
-	
 })
 .catch(function(err){
 	console.log(err.message);
@@ -30,7 +33,7 @@ gsjson({
 	spreadsheetId: config.spreadsheetIdFilleules,
 })
 .then(function(result){
-	filleulesOutput = reorganizeJson(result, valuesFilleules);
+	filleulesOutput = reorganizeJson(result, valuesFilleules, "filleule");
 	filleulesJson = createJson(filleulesOutput, "filleules");
 	ecritureJson(filleulesJson, 'public/filleules.json');
 	console.log(filleulesOutput);
@@ -42,10 +45,11 @@ gsjson({
 
 
 
-function reorganizeJson(data, keys){
+function reorganizeJson(data, keys, groupMember){
 	return data.map(function(item){
 		var output = {};
 		createId(output, item.horodateur, item.nom, item.prenom);
+		addStatus(output, groupMember);
 		for(var k in keys){
 			output[k] = item[keys[k]];
 			if(k === 'mailingList' || k === 'map'){
@@ -61,6 +65,10 @@ function reorganizeJson(data, keys){
 
 function createId(object, horodateur, nom, prenom){
 	object.id = md5(horodateur + nom + prenom);
+}
+
+function addStatus(object, group){
+	object.status = group;
 }
 
 function transformIntoBoolean(value){
