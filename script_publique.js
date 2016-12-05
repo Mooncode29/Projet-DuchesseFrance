@@ -16,6 +16,7 @@ gsjson({
 .then(function(result){
 	
 	marrainesOutput = reorganizeJson(result, valuesMarraines);
+	console.log(marrainesOutput);
 	marrainesJson = createJson(marrainesOutput, "marraines");
 	ecritureJson(marrainesJson, 'public/marraines.json');
 	
@@ -32,6 +33,7 @@ gsjson({
 	filleulesOutput = reorganizeJson(result, valuesFilleules);
 	filleulesJson = createJson(filleulesOutput, "filleules");
 	ecritureJson(filleulesJson, 'public/filleules.json');
+	console.log(filleulesOutput);
 })
 .catch(function(err){
 	console.log(err.message);
