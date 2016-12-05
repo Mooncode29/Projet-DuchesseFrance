@@ -14,13 +14,7 @@ gsjson({
 	spreadsheetId: config.spreadsheetIdMarraines,
 })
 .then(function(result){
-	
-<<<<<<< HEAD
-	marrainesOutput = reorganizeJson(result, valuesMarraines);
-	console.log(marrainesOutput);
-=======
 	marrainesOutput = reorganizeJson(result, valuesMarraines, "marraine");
->>>>>>> a96d46615dbf20306e3c7a8c0ef5f81dfce9aef2
 	marrainesJson = createJson(marrainesOutput, "marraines");
 	ecritureJson(marrainesJson, 'public/marraines.json');
 })
