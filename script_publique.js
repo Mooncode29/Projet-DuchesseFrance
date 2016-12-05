@@ -17,7 +17,7 @@ gsjson({
 	
 	marrainesOutput = reorganizeJson(result, valuesMarraines, "marraine");
 	marrainesJson = createJson(marrainesOutput, "marraines");
-	ecritureJson(marrainesJson, 'public/marraines.json');
+	ecritureJson(marrainesJson, __dirname + '/public/marraines.json');
 })
 .catch(function(err){
 	console.log(err.message);
@@ -30,13 +30,12 @@ gsjson({
 .then(function(result){
 	filleulesOutput = reorganizeJson(result, valuesFilleules, "filleule");
 	filleulesJson = createJson(filleulesOutput, "filleules");
-	ecritureJson(filleulesJson, 'public/filleules.json');
+	ecritureJson(filleulesJson, __dirname + '/public/filleules.json');
 })
 .catch(function(err){
 	console.log(err.message);
 	console.log(err.stack);
 });
-
 
 
 function reorganizeJson(data, keys, groupMember){
@@ -45,14 +44,15 @@ function reorganizeJson(data, keys, groupMember){
 		createId(output, item.horodateur, item.nom, item.prenom);
 		addStatus(output, groupMember);
 		for(var k in keys){
-			output[k] = item[keys[k]];
-			if(k === 'mailingList' || k === 'map'){
-				output[k] = transformIntoBoolean(item[keys[k]]);
+			output[k] = item[keys[k]] || '';
+			if(k === 'mailingList'){
+				output[k] = booleanMailingList(item[keys[k]]);
 			}
-			else {
-				output[k] = transformUndefined(item[keys[k]]);
-			}
+			if(k === 'map'){
+				output[k] = booleanMap(item[keys[k]]);
+			}	
 		}
+		console.log(output);
 		return output;
 	});
 }
@@ -65,22 +65,15 @@ function addStatus(object, group){
 	object.status = group;
 }
 
-function transformIntoBoolean(value){
-	if(value === "Non"){
-		return false;
-	}
-	else {
-		return true;
-	}
+function booleanMailingList(value){
+	return (value === 'Oui');
 }
 
-function transformUndefined(value){
-	if(value === undefined){
-		return '';
+function booleanMap(value){
+	if(!value){
+		return true;
 	}
-	else {
-		return value;
-	}
+	return !(value.includes('Non'));
 }
 
 function createJson(array, group){
