@@ -64,7 +64,6 @@ function reorganizeJson(data, keys, status){
 				output.validEmail = validMail(item[keys[k]]);
 			}
 		}
-		console.log(output);
 		return output;
 	});
 }
