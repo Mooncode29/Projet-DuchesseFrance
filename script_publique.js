@@ -5,43 +5,53 @@ var md5 = require('md5');
 var valuesFilleules = require('./valuesFilleules.js');
 var valuesMarraines = require('./valuesMarraines.js');
 
-var filleulesOutput ;
-var filleulesJson ;
-var marrainesOutput ; 
-var marrainesJson ;
+var curseur = 0;
 
-gsjson({
-	spreadsheetId: config.spreadsheetIdMarraines,
-})
-.then(function(result){
-	marrainesOutput = reorganizeJson(result, valuesMarraines, "marraine");
-	marrainesJson = createJson(marrainesOutput, "marraines");
-	ecritureJson(marrainesJson, __dirname + '/public/marraines.json');
-})
-.catch(function(err){
-	console.log(err.message);
-	console.log(err.stack);
-});
+var groupTable = [
+	{
+		spreadsheetId: config.spreadsheetIdMarraines,
+		status: "marraine",
+		keys: valuesMarraines
+	},
+	{
+		spreadsheetId: config.spreadsheetIdFilleules,
+		status: "filleule",
+		keys: valuesFilleules
+	}
+];
 
-gsjson({
-	spreadsheetId: config.spreadsheetIdFilleules,
-})
-.then(function(result){
-	filleulesOutput = reorganizeJson(result, valuesFilleules, "filleule");
-	filleulesJson = createJson(filleulesOutput, "filleules");
-	ecritureJson(filleulesJson, __dirname + '/public/filleules.json');
-})
-.catch(function(err){
-	console.log(err.message);
-	console.log(err.stack);
-});
+getDataGsheets(groupTable);
 
 
-function reorganizeJson(data, keys, groupMember){
+function getDataGsheets(table){
+	for (var i = 0; i < table.length; i++){
+		gsjson({
+			spreadsheetId: table[i].spreadsheetId,
+		})
+		.catch(function(err){
+			console.log(err.message);
+			console.log(err.stack);
+		})
+		.then(function(result){
+			next(result, table);
+		});
+	}
+}
+
+function next(result, table){
+	groupTable[curseur].output = reorganizeJson(result, table[curseur].keys, table[curseur].status);
+	curseur ++;
+	if(curseur === table.length){
+		var fileJson = createJson(groupTable[0].output, groupTable[1].output);
+		ecritureJson(fileJson, __dirname + '/public/marrainage.json');
+	}
+}
+
+function reorganizeJson(data, keys, status){
 	return data.map(function(item){
 		var output = {};
 		createId(output, item.horodateur, item.nom, item.prenom);
-		addStatus(output, groupMember);
+		addStatus(output, status);
 		for(var k in keys){
 			output[k] = item[keys[k]] || '';
 			if(k === 'mailingList'){
@@ -51,7 +61,6 @@ function reorganizeJson(data, keys, groupMember){
 				output[k] = booleanMap(item[keys[k]]);
 			}	
 		}
-		console.log(output);
 		return output;
 	});
 }
@@ -75,9 +84,9 @@ function booleanMap(value){
 	return !(value.includes('Non'));
 }
 
-function createJson(array, group){
+function createJson(array1, array2){
 	var Json = {}
-	Json[group] = array;
+	Json.marrainage = array1.concat(array2);
 	return Json ;
 }
 
