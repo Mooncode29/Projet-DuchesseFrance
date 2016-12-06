@@ -60,8 +60,12 @@ function reorganizeJson(data, keys, status){
 			}
 			if(k === 'map'){
 				output[k] = booleanMap(item[keys[k]]);
-			}	
+			}
+			if(k === 'email'){
+				output.validEmail = validMail(item[keys[k]]);
+			}
 		}
+		console.log(output);
 		return output;
 	});
 }
@@ -83,6 +87,11 @@ function booleanMap(value){
 		return true;
 	}
 	return !(value.includes('Non'));
+}
+
+function validMail(value){
+	var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+	return emailPattern.test(value);
 }
 
 function createJson(array1, array2){
