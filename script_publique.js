@@ -2,8 +2,8 @@ var fs = require('fs');
 var gsjson = require('google-spreadsheet-to-json');
 var config = require('./config.js');
 var md5 = require('md5');
-var valuesFilleules = require('./valuesFilleules.js');
-var valuesMarraines = require('./valuesMarraines.js');
+var values = require('./values.js');
+// var valuesMarraines = require('./valuesMarraines.js');
 
 var curseur = 0;
 
@@ -11,12 +11,12 @@ var groupTable = [
 	{
 		spreadsheetId: config.spreadsheetIdMarraines,
 		status: "marraine",
-		keys: valuesMarraines
+		keys: values.marraines
 	},
 	{
 		spreadsheetId: config.spreadsheetIdFilleules,
 		status: "filleule",
-		keys: valuesFilleules
+		keys: values.filleules
 	}
 ];
 
@@ -34,6 +34,7 @@ function getDataGsheets(table){
 		})
 		.then(function(result){
 			next(result, table);
+			
 		});
 	}
 }
