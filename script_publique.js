@@ -2,27 +2,30 @@ var fs = require('fs');
 var gsjson = require('google-spreadsheet-to-json');
 var config = require('./config.js');
 var md5 = require('md5');
-var valuesFilleules = require('./valuesFilleules.js');
-var valuesMarraines = require('./valuesMarraines.js');
+var values = require('./values.js');
 
 var curseur = 0;
 
+/* Tableau regroupant les informations selon la spreadsheet appelée */
 var groupTable = [
 	{
 		spreadsheetId: config.spreadsheetIdMarraines,
 		status: "marraine",
-		keys: valuesMarraines
+		keys: values.marraines
 	},
 	{
 		spreadsheetId: config.spreadsheetIdFilleules,
 		status: "filleule",
-		keys: valuesFilleules
+		keys: values.filleules
 	}
 ];
 
+
+/* Appel de la fonction principale */
 getDataGsheets(groupTable);
 
 
+/* Extraction des spreadsheets grâce à une boucle et des promesses via la fonction next */
 function getDataGsheets(table){
 	for (var i = 0; i < table.length; i++){
 		gsjson({
@@ -34,10 +37,14 @@ function getDataGsheets(table){
 		})
 		.then(function(result){
 			next(result, table);
+			
 		});
 	}
 }
 
+/* Lorsqu'une spreadsheet a été extraite, on réorganise le fichier Json comme prédéfini dans les keys de values.js . 
+Les valeurs undefined sont remplacées par des chaines de caractères vides, les oui/non sont remplacés par des booléens 
+et la validité de l'email est vérifiée. */
 function next(result, table){
 	groupTable[curseur].output = reorganizeJson(result, table[curseur].keys, table[curseur].status);
 	curseur ++;
@@ -63,8 +70,10 @@ function reorganizeJson(data, keys, status){
 			if(k === 'email'){
 				output.validEmail = validMail(item[keys[k]]);
 			}
+			if(k === 'telephone' && item[keys[k]]){
+				output[k] = validPhone(item[keys[k]]);
+			}
 		}
-		console.log(output);
 		return output;
 	});
 }
@@ -91,6 +100,12 @@ function booleanMap(value){
 function validMail(value){
 	var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 	return emailPattern.test(value);
+}
+function validPhone(value){
+	if (!value.startsWith('0')){
+		value = '0'+ value ;
+}
+return value;
 }
 
 function createJson(array1, array2){
