@@ -101,7 +101,7 @@ function createJson(array1, array2){
 
 function ecritureJson(file, path){
 	var stringJson= JSON.stringify(file);
-	fs.writeFile(path ,stringJson, 'utf8', (err) => {
+	fs.writeFile(path,stringJson, 'utf8', (err) => {
 		if (err) throw err;
 		console.log('It\'s saved!');
 	});

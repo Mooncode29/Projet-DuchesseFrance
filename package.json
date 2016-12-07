@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Mooncode29/Projet-DuchesseFrance#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "google-spreadsheet-to-json": "^0.3.0",
     "install": "^0.8.2",
