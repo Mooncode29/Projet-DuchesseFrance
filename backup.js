@@ -1,38 +1,8 @@
 var fs = require('fs');
-// création des fichiers
 
-// function read(operation){	
-// 	fs.readFile('public/marrainage.json','utf8',function(err,data){
-// 		if (err){
-// 			console.log(err);
-// 		}
-// 		operation(data)
-// 	});
+var now = new Date();""
 
-// } 
-// function write(content){
-// 	fs.writeFile('backup/backup1_marrainage.json',content,'utf8', (err,data) => {
-// 		if (err) {
-// 			console.log("erreur");
-// 		}	
-// 	});
-// }
-// read(write);
+var filename = __dirname + '/backup/' + now.getFullYear() + '-' + now.getMonth() + '-' + now.getDay() + '.json.bak'
 
-var seconde=1000;
-var minute = 60 * seconde;
-var heure = 60 * minute;
-var jour = 24 *heure ;
-
-var creer=fs.createReadStream('public/marrainage.json').pipe(fs.createWriteStream('backup/backup_marrainage.json'+1));
-
-function backup (){
-	setInterval(creer,jour);
- // console.log(set);
-    
-}
-backup();
-
-
-
+fs.createReadStream(__dirname + '/public/marrainage.json').pipe(fs.createWriteStream(filename));
 
