@@ -23,15 +23,10 @@ var seconde=1000;
 var minute = 60 * seconde;
 var heure = 60 * minute;
 var jour = 24 *heure ;
-
+var day = new Date();
+console.log(day);
 var creer=fs.createReadStream('public/marrainage.json').pipe(fs.createWriteStream('backup/backup_marrainage.json'+1));
 
-function backup (){
-	setInterval(creer,jour);
- // console.log(set);
-    
-}
-backup();
 
 
 
