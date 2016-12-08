@@ -26,7 +26,32 @@ Le fichier backup.js
 
 4. Créer un dossier backup à la racine pour y stocker les fichiers de sauvegarde.
 
-5. Utiliser crontab configuré comme suivant pour lancer script_publique.js : 
+5. Utiliser crontab configuré comme suivant pour lancer script_publique.js :
+Aller dans le terminal 
+taper crontab -e pour éditer la crontab
+indiquer les moments d'execution du script  sur la ligne m h  dom mon dow   command
+
+m : minute (0-59),
+h : heure (0-23),
+dom : jour du mois(1-31),
+mon : mois(1-12),
+dow : jour de la semaine(0-6, 0 étant le dimanche)
+command : indique la commande à lancer
+
+exemple : nous avons lancé avec node le script situé dans le répértoire suivant. Nous l'avons programmé toutes les minutes.
+* signifie à chaque unité de temps,
+
+* * * * * node /home/simplon/exos/projet_dc1/script_publique.js
+
+taper ctrl + 0 : pour écrire le fichier
+taper sur Entrée
+Quitter 
+la ligne suivante s'affiche : crontab: installing new crontab
+votre cron est installé
+
+Voici deux autres principaux paramètres à connaître: 
+crontab -l : pour afficher la crontab actuelle
+crontab -r : pour supprimer la crontab. Attention , la suppression est immédiate et sans confirmation.
 
 6. Utiliser crontab configuré comme suivant pour lancer backup.js : 
 
