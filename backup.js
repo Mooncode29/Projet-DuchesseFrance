@@ -2,7 +2,7 @@ var fs = require('fs');
 
 var now = new Date();
 var year = now.getFullYear();
-var month = now.getMonth() + 1;
+var month = now.getMonth() + 1; //Numéro du mois qui commence à l'indice 0
 var date = now.getDate();
 var minutes = now.getMinutes();
 
@@ -14,6 +14,7 @@ var filename = backupPath + year + addZero(month) + addZero(date) + addZero(minu
 
 fs.createReadStream(__dirname + '/public/marrainage.json').pipe(fs.createWriteStream(filename));
 
+/* Vérification du nombres de fichier et suppression du plus vieux si plus de 7 fichiers */
 fs.readdir(backupPath, function(err, files){
 	if (err){
 		return;
@@ -25,7 +26,6 @@ fs.readdir(backupPath, function(err, files){
 				older = files[i];
 			}
 		}
-		console.log(older);
 		fs.unlink(backupPath + older);
 	}
 });
