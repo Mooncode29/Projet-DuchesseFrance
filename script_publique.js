@@ -70,9 +70,6 @@ function reorganizeJson(data, keys, status){
 			if(k === 'email'){
 				output.validEmail = validMail(item[keys[k]]);
 			}
-			if(k === 'telephone' && item[keys[k]]){
-				output[k] = validPhone(item[keys[k]]);
-			}
 		}
 		return output;
 	});
@@ -100,12 +97,6 @@ function booleanMap(value){
 function validMail(value){
 	var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 	return emailPattern.test(value);
-}
-function validPhone(value){
-	if (!value.startsWith('0')){
-		value = '0'+ value ;
-}
-return value;
 }
 
 function createJson(array1, array2){
