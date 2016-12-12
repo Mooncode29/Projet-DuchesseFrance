@@ -9,7 +9,7 @@ Il vise à récupérer les informations de deux Google SpreadSheets existantes e
 
 Le fichier server.js sert à lancer le serveur et mettre à disposition le fichier Json au cas où les fichiers ne seraient pas hébergés sur le même serveur que le site de Marrainage.
 
-Le fichier generateJson.js contient le programme de conversion des Google SpreadSheets en fichier Json ainsi que l'écriture du fichier Json dans un dossier.
+Le fichier createJson.js contient le programme de conversion des Google SpreadSheets en fichier Json ainsi que l'écriture du fichier Json dans un dossier.
 
 Le fichier values.js contient les références des clés utilisées pour la réorganisation des informations.
 
@@ -35,7 +35,7 @@ Le fichier backup.js contient le script à éxécuter une fois par jour pour fai
 7. Toujours dans le terminal du serveur  
 `crontab -e` pour ouvrir l'édition de crontab  
 `2` pour choisir bin/nano  
-Tout en bas de l'édition du crontab, `*/5 * * * * node [Chemin absolu du fichier]` pour lancher le script toutes les 5 minutes. Sauvegarder avec Ctrl + O puis exit avec Ctrl + X.  
+Tout en bas de l'édition du crontab, `*/5 * * * * node [Chemin absolu du fichier]` pour lancer le script toutes les 5 minutes. Sauvegarder avec Ctrl + O puis exit avec Ctrl + X.  
   
 Pour vérifier le crontab, `crontab -l`  
 Pour supprimer le crontab, `crontab -r` . Attention, la suppression est immédiate et sans confirmation.  
