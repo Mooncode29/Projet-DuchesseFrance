@@ -46,8 +46,8 @@ Pour supprimer le crontab, `crontab -r` . Attention, la suppression est immédia
 + dom : jour du mois(1-31)
 + mon : mois(1-12)
 + dow : jour de la semaine(0-6, 0 étant le dimanche)
-+ command : indique la commande à lancer
-
++ command : indique la commande à lancer  
+  
 8. Lancer le crontab pour backup.js  
 `crontab -e` puis aller à la ligne  
 `00 4 * * * node [chemin absolu du fichier]` pour lancer le script tous les jours à 4h.
