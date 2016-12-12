@@ -19,19 +19,23 @@ Le fichier backup.js contient le script à éxécuter une fois par jour pour fai
 
 ## Mise en place
 
-1. Taper `npm init` puis `npm install` dans le terminal du serveur.
+1. Il faut préalablement mettre les Googlesheets en mode publique : cliquer sur  l'onglet `Fichier` puis `Publier sur le web`.
 
-2. `mkdir backup` puis `mkdir public`
+2. Faire  `git clone git@github.com:Mooncode29/Projet-DuchesseFrance.git`.
 
-3. `cp example.config.js config.js` puis remplir dans config.js les ID de SpreadSheets correspondant. 
+3. Taper `npm init` puis `npm install` dans le terminal du serveur.
 
-4. Toujours dans le terminal du serveur  
+4. `mkdir backup` puis `mkdir public`
+
+5. `cp example.config.js config.js` puis remplir dans config.js les ID de SpreadSheets correspondant. 
+
+6. Toujours dans le terminal du serveur  
 `crontab -e` pour ouvrir l'édition de crontab  
 `2` pour choisir bin/nano  
 Tout en bas de l'édition du crontab, `*/5 * * * * node [Chemin absolu du fichier]` pour lancher le script toutes les 5 minutes. Sauvegarder avec Ctrl + O puis exit avec Ctrl + X.  
   
-  Pour vérifier le crontab, `crontab -l`  
-  Pour supprimer le crontab, `crontab -r` . Attention, la suppression est immédiate et sans confirmation.  
+Pour vérifier le crontab, `crontab -l`  
+Pour supprimer le crontab, `crontab -r` . Attention, la suppression est immédiate et sans confirmation.  
   
   La syntaxe de crontab `m h dom mon dow command` correspond à ce qui suit :
 + m : minute (0-59)
@@ -41,7 +45,7 @@ Tout en bas de l'édition du crontab, `*/5 * * * * node [Chemin absolu du fichie
 + dow : jour de la semaine(0-6, 0 étant le dimanche)
 + command : indique la commande à lancer
 
-5. Lancer le crontab pour backup.js  
+7. Lancer le crontab pour backup.js  
 `crontab -e` puis aller à la ligne  
 `00 4 * * * node [chemin absolu du fichier]` pour lancer le script tous les jours à 4h.
 
